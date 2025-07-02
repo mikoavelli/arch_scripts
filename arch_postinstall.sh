@@ -1,9 +1,9 @@
 #!/bin/bash
 
+# This script is not fully executable, this is just the bunch off commands for my own postinstall configuration
+
 # Generate ssh-key for github: /home/YOUR_NAME/.ssh/github
 ssh-keygen -t ed25519 -C "YOUR_MAIL@gmail.com"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/github
 
 git config --global user.email "YOUR_MAIL@gmail.com"
 git config --global user.name "YOUR_NAME"
@@ -12,9 +12,6 @@ git config --global user.name "YOUR_NAME"
 curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
 
 # For uBlock Origin enable Cookie notices in Filter list
-
-# Add alias ~/.bashrc
-alias cat='bat'
 
 # Dump all shortcuts
 mkdir keybindings

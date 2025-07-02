@@ -13,6 +13,12 @@ echo "net.ipv4.ip_default_ttl = 65" | sudo tee /etc/sysctl.conf
 echo "Turn off this awful 'peek' sound"
 echo "blacklist pcspkr" | sudo tee /etc/modprobe.d/nobeep.conf
 
+echo "Creating ssh config file (for custom ssh-key names)"
+echo "Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github" | tee $HOME/.ssh/config
+
 echo "Installing gnome essential apps"
 sudo pacman -S --needed gdm gnome-calculator gnome-control-center gnome-disk-utility gnome-keyring gnome-settings-daemon gnome-shell gnome-system-monitor gnome-terminal gnome-text-editor gvfs gvfs-mtp loupe nautilus power-profiles-daemon xdg-user-dirs-gtk
 
