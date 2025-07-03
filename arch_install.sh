@@ -39,14 +39,14 @@ Host github.com
 EOT
 fi
 
-echo "-> Installing gnome essential apps"
-sudo pacman -S --needed gdm gnome-calculator gnome-control-center gnome-disk-utility gnome-keyring gnome-settings-daemon gnome-shell gnome-system-monitor gnome-terminal gnome-text-editor gvfs gvfs-mtp loupe nautilus power-profiles-daemon xdg-user-dirs-gtk
+echo "-> Installing gnome essential apps IMHO"
+sudo pacman -S --needed adw-gtk-theme gdm gnome-calculator gnome-control-center gnome-disk-utility gnome-keyring gnome-power-manager gnome-settings-daemon gnome-shell gnome-shell-extension-dash-to-panel gnome-shell-extension-appindicator gnome-system-monitor gnome-terminal gnome-tweaks gnome-text-editor gvfs gvfs-mtp loupe nautilus power-profiles-daemon xdg-user-dirs-gtk
 
 echo "-> Installing full AMD drivers"
 sudo pacman -S --needed mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-mesa-layers lib32-vulkan-mesa-layers libva-utils libva-mesa-driver
 
 echo "-> Installing essential apps"
-sudo pacman -S --needed base-devel bash-completion git micro vlc steam firefox telegram-desktop timeshift ntfs-3g dosfstools sbctl pwgen man adw-gtk-theme gnome-shell-extension-dash-to-panel gnome-shell-extension-appindicator gnome-tweaks bat flatpak less wl-clipboard noto-fonts-cjk 
+sudo pacman -S --needed base-devel bash-completion git micro vlc steam firefox telegram-desktop timeshift ntfs-3g dosfstools sbctl pwgen man bat flatpak less wl-clipboard noto-fonts-cjk 
 
 echo "-> Creating basic micro settings.json"
 mkdir -p ~/.config/micro
