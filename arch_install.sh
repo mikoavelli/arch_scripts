@@ -46,7 +46,7 @@ echo "-> Installing full AMD drivers"
 sudo pacman -S --needed mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-mesa-layers lib32-vulkan-mesa-layers libva-utils libva-mesa-driver
 
 echo "-> Installing essential apps"
-sudo pacman -S --needed base-devel bash-completion git micro vlc steam firefox telegram-desktop timeshift ntfs-3g dosfstools sbctl pwgen man adw-gtk-theme gnome-shell-extension-dash-to-panel gnome-shell-extension-appindicator gnome-tweaks bat flatpak less wl-clipboard
+sudo pacman -S --needed base-devel bash-completion git micro vlc steam firefox telegram-desktop timeshift ntfs-3g dosfstools sbctl pwgen man adw-gtk-theme gnome-shell-extension-dash-to-panel gnome-shell-extension-appindicator gnome-tweaks bat flatpak less wl-clipboard noto-fonts-cjk 
 
 echo "-> Creating basic micro settings.json"
 mkdir -p ~/.config/micro
