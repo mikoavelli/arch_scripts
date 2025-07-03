@@ -7,6 +7,7 @@ ssh-keygen -t ed25519 -C "YOUR_MAIL@gmail.com"
 
 git config --global user.email "YOUR_MAIL@gmail.com"
 git config --global user.name "YOUR_NAME"
+git config --global core.editor "micro"
 
 # Install module for VideoDownload Helper extension
 curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
@@ -43,7 +44,8 @@ sudo mv /usr/share/applications/bvnc.desktop{,.bak}
 sudo mv /usr/share/applications/avahi-discover.desktop{,.bak} 
 sudo mv /usr/share/applications/qvidcap.desktop{,.bak}
 
-# Env for some steam games option (add to the launch options):
+# Env for some steam games (add to the launch options):
 env -u SDL_VIDEODRIVER %command%
 
 # Delete gdm-settings after it's setup
+# First setup system from settings, and only then apply settings from gdm-settings

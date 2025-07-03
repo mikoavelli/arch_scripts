@@ -30,22 +30,41 @@ EOT
 echo "-> Creating SSH config for custom key names"
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
+if ! grep -q "Host github.com" ~/.ssh/config; then
 cat <<EOT | tee -a ~/.ssh/config
-# GitHub custom key
 Host github.com
   HostName github.com
   User git
   IdentityFile ~/.ssh/github
 EOT
+fi
 
 echo "-> Installing gnome essential apps"
-sudo pacman -S --needed --noconfirm gdm gnome-calculator gnome-control-center gnome-disk-utility gnome-keyring gnome-settings-daemon gnome-shell gnome-system-monitor gnome-terminal gnome-text-editor gvfs gvfs-mtp loupe nautilus power-profiles-daemon xdg-user-dirs-gtk
+sudo pacman -S --needed gdm gnome-calculator gnome-control-center gnome-disk-utility gnome-keyring gnome-settings-daemon gnome-shell gnome-system-monitor gnome-terminal gnome-text-editor gvfs gvfs-mtp loupe nautilus power-profiles-daemon xdg-user-dirs-gtk
 
 echo "-> Installing full AMD drivers"
-sudo pacman -S --needed --noconfirm mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-mesa-layers lib32-vulkan-mesa-layers libva-utils libva-mesa-driver
+sudo pacman -S --needed mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-mesa-layers lib32-vulkan-mesa-layers libva-utils libva-mesa-driver
 
 echo "-> Installing essential apps"
-sudo pacman -S --needed --noconfirm base-devel bash-completion git vim vlc steam firefox telegram-desktop timeshift ntfs-3g dosfstools sbctl pwgen man adw-gtk-theme gnome-shell-extension-dash-to-panel gnome-shell-extension-appindicator gnome-tweaks bat flatpak less
+sudo pacman -S --needed base-devel bash-completion git micro vlc steam firefox telegram-desktop timeshift ntfs-3g dosfstools sbctl pwgen man adw-gtk-theme gnome-shell-extension-dash-to-panel gnome-shell-extension-appindicator gnome-tweaks bat flatpak less wl-clipboard
+
+echo "-> Creating basic micro settings.json"
+mkdir -p ~/.config/micro
+cat <<EOF | tee ~/.config/micro/settings.json
+{
+    "scrollbar": true,
+    "softwrap": true,
+    "wordwrap": true
+}
+EOF
+
+echo "-> Creating basic micro bindings.json"
+cat <<EOF | tee ~/.config/micro/bindings.json
+{
+	"Ctrl-z": "Undo",
+	"Ctrl-y": "Redo"
+}
+EOF
 
 if ! command -v yay &> /dev/null; then
 echo "-> Installing yay"
@@ -53,7 +72,7 @@ echo "-> Installing yay"
   git clone https://aur.archlinux.org/yay.git
   cd /tmp/yay
   makepkg -si
-  cd
+  cd $HOME
   rm -rf /tmp/yay/
 fi
 
