@@ -72,23 +72,24 @@ echo "-> Installing yay"
   git clone https://aur.archlinux.org/yay.git
   cd /tmp/yay
   makepkg -si
-  cd $HOME
+  cd "$HOME"
   rm -rf /tmp/yay/
 fi
 
 yay -Syyu
 
 echo "-> Installing yay packages"
-yay -S --needed gdm-settings morewaita-icon-theme gnome-shell-extension-just-perfection-desktop lazydocker
+yay -S --needed gdm-settings morewaita-icon-theme gnome-shell-extension-just-perfection-desktop
 
 echo "-> Signing modules for Secure Boot"
 sudo sbctl create-keys
 sudo sbctl sign -s /boot/vmlinuz-linux
 sudo sbctl sign -s /boot/EFI/BOOT/BOOTX64.EFI
 
-echo "-> Enabling necessery services"
+echo "-> Enabling necessary services"
 sudo systemctl enable gdm.service
 sudo systemctl enable bluetooth.service
+sudo systemctl enable power-profiles-daemon.service
 
 echo "-> Installing flatpak for clean installation of some apps (f.e. okular)"
 flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -100,7 +101,10 @@ echo "-> Disabling some services .."
 sudo systemctl disable remote-fs.target avahi-daemon.service
 sudo systemctl mask remote-fs.target avahi-daemon.service
 
-echo "-> Finallization ..."
+echo "-> Turning on Large Text (Better then 125% scaling)"
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
+
+echo "-> Finalization ..."
 yay -Syyu
 yay -Yc
 
